@@ -86,18 +86,16 @@ class AircraftList extends Component {
     render() {
         const items = this.props.aircrafts.map(function(item){
             const dollar = item.price + ' dollar'
+            var myImage = './../../images/' + item.name + '.jpg'
+            console.log(myImage);
             return (<Card style={{maxWidth: 345}}>
             <CardHeader
-            action={
-                <IconButton aria-label="settings">
-                </IconButton>
-            }
             title={item.name}
             subheader={dollar}
             />
             <CardMedia
             style={{height: 0, paddingTop: '56.25%'}}
-            image=""
+            image={require('./../../images/F22.jpg')}
             title=""
             />
             <CardContent>
@@ -109,16 +107,16 @@ class AircraftList extends Component {
         </Card>);
           });
         let dialogFooter = <div className="ui-dialog-buttonpane p-clearfix">
-            <Button label="Close" icon="pi pi-times" onClick={this.dialogHide} />
-            <Button label="Delete" hidden={this.newAircraft ? true : false} icon="pi pi-times" onClick={this.delete} />
-            <Button label={this.newAircraft ? "Save" : "Update"} icon="pi pi-check" onClick={this.save} />
+            <Button label="Close"  onClick={this.dialogHide} />
+            <Button label="Delete" hidden={this.newAircraft ? true : false}  onClick={this.delete} />
+            <Button label={this.newAircraft ? "Save" : "Update"} onClick={this.save} />
         </div>;
         return (
             <div>
                 <Growl ref={(el) => this.growl = el} />
                 <img src={require("./../../images/fighter-jet.jpg")}  width="300" height="200"></img>
                 <div className="p-clearfix" style={{ width: '100%' }}>
-                <Button style={{ float: 'left' }} label="Add" icon="pi pi-plus" onClick={this.addNew} />
+                <Button style={{ float: 'left' }} label="Control Panel" onClick={this.addNew} />
                 </div>
                 <div>
                 {items}
