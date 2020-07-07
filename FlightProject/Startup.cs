@@ -4,7 +4,9 @@ using FlightProject.Core.Services;
 using FlightProject.Dao;
 using FlightProject.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,15 @@ namespace FlightProject
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AC",
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +70,8 @@ namespace FlightProject
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            
+            app.UseCors("AC");
 
             app.UseSpa(spa =>
             {

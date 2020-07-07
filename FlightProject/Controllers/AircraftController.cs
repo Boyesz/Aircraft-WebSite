@@ -5,6 +5,7 @@ using FlightProject.Core.Models;
 using FlightProject.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Microsoft.AspNetCore.Cors;
 
 namespace FlightProject.Controllers
 {
@@ -18,6 +19,7 @@ namespace FlightProject.Controllers
         }
 
         [HttpGet]
+        [EnableCors("AC")]
         [Route("Aircrafts")]
         public async Task<IActionResult> GetAircrafts()
         {
@@ -25,6 +27,7 @@ namespace FlightProject.Controllers
         }
 
         [HttpGet]
+        [EnableCors("AC")]
         [Route("Aircraft/{aircraftId}")]
         public async Task<IActionResult> GetAircrafts(int aircraftId)
         {
@@ -40,6 +43,7 @@ namespace FlightProject.Controllers
         }
 
         [HttpPost]
+        [EnableCors("AC")]
         [Route("Aircraft")]
         public IActionResult CreateAircraft([FromBody] Aircraft aircraft)
         {
@@ -56,6 +60,7 @@ namespace FlightProject.Controllers
         }
 
         [HttpDelete]
+        [EnableCors("AC")]
         [Route("Aircraft/{aircraftId}")]
         public IActionResult DeleteAircraft(int aircraftId)
         {
@@ -71,6 +76,7 @@ namespace FlightProject.Controllers
         }
 
         [HttpPut]
+        [EnableCors("AC")]
         [Route("Aircraft")]
         public IActionResult UpdateAircraft([FromBody] Aircraft aircraft)
         {
